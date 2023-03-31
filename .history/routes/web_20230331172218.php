@@ -21,7 +21,6 @@ Route::post('users', [UsersController::class, 'store']);
 //Contact
 Route::get('contact', [ContactController::class, 'create']);
 Route::post('contact', [ContactController::class, 'store']);
-//test le mail
 Route::get('/test-contact', function () {
     return new App\Mail\Contact([
       'nom' => 'Durand',

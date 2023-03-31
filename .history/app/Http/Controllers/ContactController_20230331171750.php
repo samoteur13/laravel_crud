@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\View\View;
-use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\Contact;
- 
+
 class ContactController extends Controller
 {
     public function create ()
@@ -18,9 +14,7 @@ class ContactController extends Controller
 
     public function store (ContactRequest $request)
     {
-        Mail::to('administrateur@chezmoi.com')
-        ->send(new Contact($request->except('_token')));
-
+        Mail:to('')
         return view('confirm');
     }
 }
