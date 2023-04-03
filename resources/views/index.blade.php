@@ -27,7 +27,6 @@
                 <table class="table is-hoverable">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Titre</th>
                             <th></th>
                             <th></th>
@@ -37,7 +36,6 @@
                     <tbody>
                         @foreach ($films as $film)
                             <tr>
-                                <td>{{ $film->id }}</td>
                                 <td><strong>{{ $film->title }}</strong></td>
                                 <td><a class="button is-primary" href="{{ route('films.show', $film->id) }}">Voir</a></td>
                                 <td><a class="button is-warning" href="{{ route('films.edit', $film->id) }}">Modifier</a>

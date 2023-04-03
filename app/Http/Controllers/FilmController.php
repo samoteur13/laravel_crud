@@ -15,6 +15,7 @@ class FilmController extends Controller
     {
         // $films = Film::all();
         $films = Film::paginate(5);
+        $films = Film::oldest('title')->paginate(5);
         return view('index', compact('films'));
     }
 
