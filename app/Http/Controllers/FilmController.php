@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FilmRequest;
 use App\Models\Film;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Http\Requests\FilmRequest;
+use Illuminate\Http\RedirectResponse;
 
 class FilmController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    // public function index()
+    // {
+    //     // $films = Film::all();
+    //     $films = Film::paginate(5);
+    //     $films = Film::oldest('title')->paginate(5);
+    //     return view('index', compact('films'));
+    // }
+    
+    public function index(): View
     {
-        // $films = Film::all();
-        $films = Film::paginate(5);
-        $films = Film::oldest('title')->paginate(5);
+        $films = Film::withTrashed()->oldest('title')->paginate(5);
+
         return view('index', compact('films'));
     }
 
@@ -58,7 +67,7 @@ class FilmController extends Controller
     public function update(FilmRequest $filmRequest, Film $film)
     {
         $film->update($filmRequest->all());
-        
+
         return redirect()->route('films.index')->with('info', 'Le film a bien été modifier');
     }
 
@@ -69,6 +78,17 @@ class FilmController extends Controller
     {
         $film->delete();
 
-        return back()->with('info','Le film a bien été supprimé dans la base de données');
+        return back()->with('info', 'Le film a bien été mis dans la corbeille.');
+    }
+
+    public function forceDestroy($id): RedirectResponse
+    {
+        Film::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
+        return back()->with('info', 'Le film a bien été supprimé définitivement dans la base de données.');
+    }
+    public function restore($id): RedirectResponse
+    {
+        Film::withTrashed()->whereId($id)->firstOrFail()->restore();
+        return back()->with('info', 'Le film a bien été restauré.');
     }
 }
