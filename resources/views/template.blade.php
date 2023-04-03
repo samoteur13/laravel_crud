@@ -1,24 +1,20 @@
 <!DOCTYPE html>
-<html lang="fr">
-
-<head>
+<html>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mon joli site</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        textarea {
-            resize: none;
-        }
-
-        .card {
-            width: 25em;
-        }
-    </style>
-</head>
-
-<body>
-    @yield('contenu')
-</body>
-
+    <title>Films</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    @yield('css')
+  </head>
+  <body>
+    <main class="section">
+        <div class="container">
+            @yield('content')
+        </div>
+    </main>
+    <footer>
+      @yield('footer')
+    </footer>
+  </body>
 </html>

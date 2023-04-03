@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\FilmController;
 
 
 
@@ -31,6 +32,9 @@ Route::get('/test-contact', function () {
       'message' => 'Je voulais vous dire que votre site est magnifique !'
       ]);
 });
+
+//film 
+Route::resource('films', FilmController::class);
 
 //Image 
 Route::get('photo',[PhotoController::class, 'create']);
