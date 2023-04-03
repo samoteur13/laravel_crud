@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilmRequest;
 use App\Models\Film;
 use Illuminate\Http\Request;
 
@@ -22,15 +23,16 @@ class FilmController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FilmRequest $filmRequest)
     {
-        //
+        Film::create($filmRequest->all());
+        return redirect()->route('films.index')->with('info', 'Le film a bien été créé');
     }
 
     /**
@@ -44,17 +46,19 @@ class FilmController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Film $film)
     {
-        //
+        return view('edit', compact('film'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FilmRequest $filmRequest, Film $film)
     {
-        //
+        $film->update($filmRequest->all());
+        
+        return redirect()->route('films.index')->with('info', 'Le film a bien été modifier');
     }
 
     /**
