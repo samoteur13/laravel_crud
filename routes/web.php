@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WelcomeController;
@@ -19,9 +19,10 @@ Route::get('users', [UsersController::class, 'create']);
 Route::post('users', [UsersController::class, 'store']);
 
 
-//Contact
-Route::get('contact', [ContactController::class, 'create']);
-Route::post('contact', [ContactController::class, 'store']);
+//contact
+Route::get('contact', [ContactsController::class, 'create'])->name('contact.create');
+Route::post('contact', [ContactsController::class, 'store'])->name('contact.store');
+
 //test le mail
 Route::get('/test-contact', function () {
     return new App\Mail\Contact([
