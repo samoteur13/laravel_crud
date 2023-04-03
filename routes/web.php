@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WelcomeController;
 
@@ -29,6 +30,10 @@ Route::get('/test-contact', function () {
       'message' => 'Je voulais vous dire que votre site est magnifique !'
       ]);
 });
+
+//Image 
+Route::get('photo',[PhotoController::class, 'create']);
+Route::post('photo',[PhotoController::class, 'store']);
 
 
 
