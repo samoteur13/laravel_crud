@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\Category;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Requests\FilmRequest;
@@ -10,22 +11,13 @@ use Illuminate\Http\RedirectResponse;
 
 class FilmController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     // $films = Film::all();
-    //     $films = Film::paginate(5);
-    //     $films = Film::oldest('title')->paginate(5);
-    //     return view('index', compact('films'));
-    // }
     
-    public function index(): View
+    public function index($slug = null): View
     {
-        $films = Film::withTrashed()->oldest('title')->paginate(5);
-
-        return view('index', compact('films'));
+        $query = $slug ? Category::whereSlug($slug)->firstOrFail()->films() : Film::query();
+        $films = $query->withTrashed()->oldest('title')->paginate(5);
+        $categories = Category::all();
+        return view('index', compact('films', 'categories', 'slug'));
     }
 
     /**
