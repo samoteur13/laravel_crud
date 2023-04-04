@@ -31,7 +31,7 @@ class FilmController extends Controller
      * 
      * @param  \App\Film $film
      */
-    public function show(Film $film): Response
+    public function show(Film $film)
     {
         return $film;
     }
@@ -41,7 +41,7 @@ class FilmController extends Controller
      * 
      * @param  \App\Film $film
      */
-    public function update(Request $request, Film $film): Response
+    public function update(Request $request, Film $film)
     {
         $film->update($request->all());
     }
