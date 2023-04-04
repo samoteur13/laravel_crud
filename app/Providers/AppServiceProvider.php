@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //si une de ces deux vue (index ou create) est appeler alor elle est renvoyer avec les categories
-        View::composer(['index', 'create'], function ($view) {
+        View::composer(['index', 'create', 'edit'], function ($view) {
             $view->with('categories', Category::all());
         });
     }
