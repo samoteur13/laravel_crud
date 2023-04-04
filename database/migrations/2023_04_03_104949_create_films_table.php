@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //ajouter la ligne ci-dessous pour eviter un problème lors de l'ajout de clef etranger à son ajout
-        Schema::disableForeignKeyConstraints();
+
         Schema::create('films', function (Blueprint $table) {
             $table->id();
             $table->string('title');
