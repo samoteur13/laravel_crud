@@ -16,7 +16,7 @@ class FilmController extends Controller
     {
         $query = $slug ? Category::whereSlug($slug)->firstOrFail()->films() : Film::query();
         $films = $query->withTrashed()->oldest('title')->paginate(5);
-        return view('index', compact('films', 'slug'));
+        return view('films.index', compact('films', 'slug'));
     }
 
     /**
@@ -24,7 +24,7 @@ class FilmController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('films.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class FilmController extends Controller
      */
     public function show(Film $film): View
     {
-        return view('show', compact('film'));
+        return view('films.show', compact('film'));
     }
 
     /**
@@ -50,7 +50,7 @@ class FilmController extends Controller
      */
     public function edit(Film $film)
     {
-        return view('edit', compact('film'));
+        return view('films.edit', compact('film'));
     }
 
     /**
