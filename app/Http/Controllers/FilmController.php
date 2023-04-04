@@ -25,7 +25,8 @@ class FilmController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $categories = Category::all();
+        return view('create', compact('categories'));
     }
 
     /**
@@ -42,7 +43,8 @@ class FilmController extends Controller
      */
     public function show(Film $film)
     {
-        return view('show', compact('film'));
+        $category = $film->category->name;
+        return view('show', compact('film', 'category'));
     }
 
     /**

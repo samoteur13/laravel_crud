@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Film extends Model
 {
-    protected $fillable = ['title', 'year', 'description'];
+    protected $fillable = ['title', 'year', 'description', 'category_id'];
     use HasFactory, SoftDeletes;
 
     public function category(): BelongsTo
