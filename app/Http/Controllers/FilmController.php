@@ -32,7 +32,8 @@ class FilmController extends Controller
      */
     public function store(FilmRequest $filmRequest)
     {
-        Film::create($filmRequest->all());
+        $film = Film::create($filmRequest->all());
+        $film->categories()->attach($filmRequest->cats);
         return redirect()->route('films.index')->with('info', 'Le film a bien été créé');
     }
 
