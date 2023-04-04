@@ -46,6 +46,7 @@ class FilmController extends Controller
     {
         $film = Film::create($filmRequest->all());
         $film->categories()->attach($filmRequest->cats);
+        $film->actors()->attach($filmRequest->acts);
         return redirect()->route('films.index')->with('info', 'Le film a bien été créé');
     }
 
