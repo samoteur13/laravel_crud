@@ -41,7 +41,6 @@ class FilmController extends Controller
      */
     public function show(Film $film): View
     {
-        $film->with('categories')->get();
         return view('show', compact('film'));
     }
 
