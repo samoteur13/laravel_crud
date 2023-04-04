@@ -15,7 +15,7 @@ class FilmController extends Controller
      */
     public function index(): Collection
     {
-        return Film::all();
+        return Film::with('categories', 'actors')->get();
     }
 
     /**

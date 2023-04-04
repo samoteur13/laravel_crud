@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class Film extends Model
 {
     protected $fillable = ['title', 'year', 'description'];
+
+    //cache les collonnes suivantes 
+    protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
+
     use HasFactory, SoftDeletes;
 
     public function categories(): MorphToMany
