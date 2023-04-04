@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Http\Resources\Film as FilmResource;
 use App\Models\Film;
 
 class FilmController extends Controller
@@ -31,9 +32,9 @@ class FilmController extends Controller
      * 
      * @param  \App\Film $film
      */
-    public function show(Film $film)
+    public function show(Film $film): FilmResource
     {
-        return $film;
+        return new FilmResource($film);
     }
 
     /**
