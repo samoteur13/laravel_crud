@@ -39,10 +39,10 @@ class FilmController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Film $film)
+    public function show(Film $film): View
     {
-        $category = $film->category->name;
-        return view('show', compact('film', 'category'));
+        $film->with('categories')->get();
+        return view('show', compact('film'));
     }
 
     /**
