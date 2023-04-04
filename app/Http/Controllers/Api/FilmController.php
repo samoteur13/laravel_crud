@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Film;
 
 class FilmController extends Controller
@@ -13,9 +13,9 @@ class FilmController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Collection
+    public function index(): LengthAwarePaginator
     {
-        return Film::with('categories', 'actors')->get();
+        return Film::with('categories', 'actors')->paginate(4);
     }
 
     /**
