@@ -3,18 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\Actor;
 use App\Models\Category;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Requests\FilmRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Route;
 
 class FilmController extends Controller
 {
     
     public function index($slug = null): View
     {
-        $query = $slug ? Category::whereSlug($slug)->firstOrFail()->films() : Film::query();
+        $model = null;
+
+        if($slug) {
+            if(Route::currentRouteName() == 'films.category') {
+                $model = new Category;
+            } else {
+                $model = new Actor;
+            }
+        }
+        
+        $query = $model ? $model->whereSlug($slug)->firstOrFail()->films() : Film::query();
         $films = $query->withTrashed()->oldest('title')->paginate(5);
         return view('films.index', compact('films', 'slug'));
     }
