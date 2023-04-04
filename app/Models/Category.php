@@ -11,6 +11,9 @@ class Category extends Model
     use HasFactory;
     protected $fillable = ['name', 'slug'];
 
+    //affiche les collonnes suivantes
+    protected $visible = ['name'];
+
     public function films(): MorphToMany
     {
         return $this->morphToMany(Film::class, 'filmable');
