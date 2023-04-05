@@ -16,5 +16,5 @@ j'y effectue :
 - le controller et c'est recources [recources](https://github.com/samoteur13/laravel_crud/commit/04bf0b67d4c45730fb838d3c98b6e499cc368802).
 ext.... voir les commites
 
-La suite du projet aborde la sécurité dans un autre repositorie.
+La suite du projet aborde la sécurité dans un autre [repositorie](https://github.com/samoteur13/laravel_tuto_securite).
 
